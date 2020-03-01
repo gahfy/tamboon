@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_default_activity">16dp</dimen>
+    <dimen name="size_img_square_single_line_item">56dp</dimen>
+    <dimen name="margin_vertical_img_single_line_item">8dp</dimen>
+    <dimen name="margin_horizontal_img_single_line_item">16dp</dimen>
+    <dimen name="margin_horizontal_lbl_single_line_item">16dp</dimen>
+    <dimen name="font_size_lbl_single_line_item">16sp</dimen>
+    <dimen name="padding_edittext_drawable_credit_card">8dp</dimen>
+    <dimen name="margin_horizontal_txtlayt_same_line">8dp</dimen>
+    <dimen name="margin_top_txtlyt">8dp</dimen>
+    <dimen name="margin_button">16dp</dimen>
+    <dimen name="font_size_title">18sp</dimen>
+</resources>

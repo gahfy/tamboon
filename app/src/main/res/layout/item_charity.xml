@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.omise.tamboon.ui.charity.list.CharityItemViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bkg_clickable_list_item"
+        android:tag="@{viewModel.name}"
+        android:onClick="@{viewModel.clickListener}">
+
+        <ImageView
+            android:id="@+id/img_item_charity"
+            android:layout_width="@dimen/size_img_square_single_line_item"
+            android:layout_height="@dimen/size_img_square_single_line_item"
+            android:layout_marginTop="@dimen/margin_vertical_img_single_line_item"
+            android:layout_marginBottom="@dimen/margin_vertical_img_single_line_item"
+            android:layout_marginStart="@dimen/margin_horizontal_img_single_line_item"
+            android:scaleType="centerInside"
+            android:contentDescription="@{viewModel.name}"
+            app:url="@{viewModel.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@sample/habitat" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size_lbl_single_line_item"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_marginStart="@dimen/margin_horizontal_lbl_single_line_item"
+            android:layout_marginEnd="@dimen/margin_horizontal_lbl_single_line_item"
+            android:text="@{viewModel.name}"
+            app:layout_constraintStart_toEndOf="@+id/img_item_charity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_item_charity"
+            app:layout_constraintBottom_toBottomOf="@+id/img_item_charity"
+            tools:text="@sample/charities.json/data/name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

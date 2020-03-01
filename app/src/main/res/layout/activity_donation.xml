@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.omise.tamboon.ui.donation.DonationViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lyt_activity_donation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_default_activity">
+        <TextView
+            android:id="@+id/lbl_donation_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/font_size_title"
+            android:fontFamily="@font/roboto_medium"
+            android:text= "@{String.format(@string/donate_to, viewModel.charityName)}"
+            tools:text="Donate to Habitat for Humanity Thailand"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyt_donation_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_txtlyt"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_donation_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:errorEnabled="true">
+            <EditText
+                android:id="@+id/txt_donation_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/credit_card_hint_name"
+                app:textWatcher="@{viewModel.nameTextWatcher}"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+                android:drawableStart="@drawable/ic_person_black_24dp"
+                android:drawablePadding="@dimen/padding_edittext_drawable_credit_card"
+                android:autofillHints="name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyt_donation_credit_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_txtlyt"
+            app:layout_constraintTop_toBottomOf="@+id/txtlyt_donation_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:errorEnabled="true">
+            <EditText
+                android:id="@+id/txt_donation_credit_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/credit_card_hint_number"
+                app:drawableStartRes="@{viewModel.drawableStartResId}"
+                app:textWatcher="@{viewModel.creditCardTextWatcher}"
+                android:drawablePadding="@dimen/padding_edittext_drawable_credit_card"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:maxLength="19"
+                android:inputType="phone"
+                android:imeOptions="actionNext"
+                android:autofillHints="creditCardNumber" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_percent="0.5"
+            android:orientation="vertical"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyt_donation_credit_card_expire"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_txtlyt"
+            android:layout_marginEnd="@dimen/margin_horizontal_txtlayt_same_line"
+            app:layout_constraintTop_toBottomOf="@+id/txtlyt_donation_credit_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:errorEnabled="true">
+            <EditText
+                android:id="@+id/txt_donation_credit_card_expire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/credit_card_hint_expire"
+                app:textWatcher="@{viewModel.expireTextWatcher}"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:maxLength="5"
+                android:inputType="phone"
+                android:imeOptions="actionNext"
+                android:drawableStart="@drawable/ic_date_black_24dp"
+                android:drawablePadding="@dimen/padding_edittext_drawable_credit_card"
+                android:autofillHints="creditCardExpirationDate" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyt_donation_credit_card_cvv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_txtlyt"
+            android:layout_marginStart="@dimen/margin_horizontal_txtlayt_same_line"
+            app:layout_constraintTop_toBottomOf="@+id/txtlyt_donation_credit_card"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:errorEnabled="true">
+            <EditText
+                android:id="@+id/txt_donation_credit_card_cvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/credit_card_hint_cvv"
+                app:textWatcher="@{viewModel.cvvTextWatcher}"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:maxLength="4"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:drawableStart="@drawable/ic_credit_card_cvv"
+                android:drawablePadding="@dimen/padding_edittext_drawable_credit_card"
+                android:autofillHints="creditCardSecurityCode" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyt_donation_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_txtlyt"
+            app:layout_constraintTop_toBottomOf="@+id/txtlyt_donation_credit_card_expire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:errorEnabled="true">
+            <EditText
+                android:id="@+id/txt_donation_amount"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/amount_hint"
+                android:textAlignment="textEnd"
+                android:gravity="start"
+                app:textWatcher="@{viewModel.amountTextWatcher}"
+                android:drawableStart="@drawable/ic_baht"
+                android:drawablePadding="@dimen/padding_edittext_drawable_credit_card"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:maxLength="14"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionGo"
+                tools:ignore="RtlCompat" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/donate"
+            android:layout_marginTop="@dimen/margin_button"
+            android:onClick="@{viewModel.submitClickListener}"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/txtlyt_donation_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

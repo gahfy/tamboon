@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">TamBoon</string>
+
+    <string name="generic_error">An error occurred</string>
+    <string name="retry">Retry</string>
+    <string name="credit_card_hint_name">Name on credit card</string>
+    <string name="credit_card_hint_number">Credit card number</string>
+    <string name="credit_card_hint_expire">Expiration</string>
+    <string name="credit_card_hint_cvv">CVV</string>
+    <string name="amount_hint">Amount</string>
+    <string name="donate_to">Donate to %s</string>
+    <string name="donate">Donate</string>
+    <string name="dismiss">Dismiss</string>
+
+    <string name="error_name_not_set">Name must be set</string>
+
+    <string name="error_credit_card_not_set">Credit card must be set</string>
+    <string name="error_credit_card_length">Credit card must be 16 digits long</string>
+    <string name="error_credit_card_wrong_number">Credit card number is not valid</string>
+
+    <string name="error_date_not_set">Expiration date must be set</string>
+    <string name="error_date_expired">Expiration date must be later than today</string>
+    <string name="error_date_incorrect">Expiration date is incorrect</string>
+
+    <string name="error_cvv_not_set">CVV must be set</string>
+    <string name="error_cvv_too_short">CVV must be at least 3 digits long</string>
+
+    <string name="error_amount_not_set">Amount must be set</string>
+    <string name="error_amount_zero">Amount must be greater than 20 bahts.</string>
+</resources>
