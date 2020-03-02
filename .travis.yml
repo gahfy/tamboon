@@ -19,7 +19,7 @@ env:
     - ADB_INSTALL_TIMEOUT=8
 
 script:
-  - ./gradlew clean assembleDebug testDebug
+  - ./gradlew clean assembleDebug testDebug createDebugUnitTestCoverageReport
 after_success:
   # Renaming folder and files of reports so codecov.io can find it
   - mv app/build/reports/jacoco/createDebugUnitTestCoverageReport app/build/reports/jacoco/jacocoTestDebugUnitTestReport
