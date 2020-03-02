@@ -61,6 +61,8 @@ class CharityItemViewModelTest {
     fun test_bind_charity() {
         val testCharity = Charity(123, "testName", "testLogoUrl")
 
+        viewModel.bind(testCharity)
+
         assertEquals("binding should update id value", 123, viewModel.id.get())
         assertEquals("binding should update name value", "testName", viewModel.name.get())
         assertEquals("binding should update logoUrl value", "testLogoUrl", viewModel.imageUrl.get())
