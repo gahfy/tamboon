@@ -14,12 +14,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "OMISE_PUBLIC_KEY", omise_public_key
-        buildConfigField "String", "OMISE_PASSWORD", omise_password
+        buildConfigField "String", "OMISE_PUBLIC_KEY", hasProperty('omise_public_key') ? omise_public_key : System.getenv('omise_public_key')
+        buildConfigField "String", "OMISE_PASSWORD", hasProperty('omise_password') ? omise_password : System.getenv('omise_password')
     }
-    //testOptions {
-    //    unitTests.returnDefaultValues = true
-    //}
+
+    // For Travis
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     dataBinding {
         enabled = true
     }
