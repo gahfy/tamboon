@@ -157,6 +157,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/bt_donation_submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/donate"
