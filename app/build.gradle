@@ -1,5 +1,8 @@
+apply from: 'omise.gradle'
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
@@ -14,8 +17,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "OMISE_PUBLIC_KEY", hasProperty('omise_public_key') ? omise_public_key : System.getenv('omise_public_key')
-        buildConfigField "String", "OMISE_PASSWORD", hasProperty('omise_password') ? omise_password : System.getenv('omise_password')
+        buildConfigField "String", "OMISE_PUBLIC_KEY", omise_public_key
+        buildConfigField "String", "OMISE_PASSWORD", omise_password
     }
 
     // For Travis
@@ -31,6 +34,63 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+project.afterEvaluate {
+    //Gather build type and product flavor names in a list
+    def buildTypes = android.buildTypes.collect { type -> type.name }
+    def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+    if (!productFlavors) productFlavors.add('')
+
+    productFlavors.each { productFlavorName ->
+        buildTypes.each { buildTypeName ->
+
+            //Define the sourceName and the sourcePath.
+            def sourceName, sourcePath
+            if (!productFlavorName) {
+                sourceName = sourcePath = "${buildTypeName}"
+            } else {
+                sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+                sourcePath = "${productFlavorName}/${buildTypeName}"
+            }
+
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
+
+            task "create${sourceName.capitalize()}UnitTestCoverageReport"(type: JacocoReport, dependsOn: "$testTaskName") {
+
+                group = "Reporting"
+                description =
+                        "Generate Jacoco coverage reports on the ${sourceName.capitalize()} build."
+
+                reports {
+                    xml.enabled true
+                }
+
+                //Directory where the compiled class files are
+                classDirectories =
+                        fileTree(
+                                dir: "$project.buildDir/tmp/kotlin-classes/debug",
+                                excludes: ['**/R.class',
+                                           '**/R$*.class',
+                                           '**/*$ViewBinder*.*',
+                                           '**/*$InjectAdapter*.*',
+                                           '**/*Injector*.*',
+                                           '**/BuildConfig.*',
+                                           '**/Manifest*.*',
+                                           '**/*Test*.*',
+                                           '**/*Activity*.*',
+                                           '**/CiMattersApplication*.*',
+                                           'android/**/*.*']
+                        )
+
+                sourceDirectories = files(["src/main/java",
+                                           "src/$productFlavorName/java",
+                                           "src/$buildTypeName/java"])
+
+                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+            }
         }
     }
 }

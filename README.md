@@ -2,11 +2,11 @@
 
 # Configuration
 
-Add the following code to local.properties:
+Update the following code to `app/omise.gradle`:
 
 ```
-omise_public_key="omise_public_key"
-omise_password="omise_password"
+omise_public_key="\"\""
+omise_password="\"\""
 ```
 
 And change the following code in `app/src/main/java/com/omise/tamboon/network/TamboonApi.kt`
