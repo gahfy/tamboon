@@ -54,7 +54,7 @@ class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.txt_donation_credit_card_cvv)).perform(replaceText("1234"))
         onView(ViewMatchers.withId(R.id.txt_donation_amount)).perform(replaceText("30"))
         onView(ViewMatchers.withId(R.id.bt_donation_submit)).perform(click())
-        SystemClock.sleep(5000);
+        SystemClock.sleep(5000)
         onView(ViewMatchers.withId(R.id.bt_success)).check(matches(withText("DISMISS")))
     }
 }
