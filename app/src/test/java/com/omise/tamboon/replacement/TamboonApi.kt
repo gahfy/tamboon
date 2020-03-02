@@ -6,6 +6,7 @@ import com.omise.tamboon.model.DonationResponse
 import com.omise.tamboon.testutils.JsonParser
 
 var URL_CHARITIES = ""
+var URL_DONATION = ""
 
 class TamboonApi : com.omise.tamboon.network.TamboonApi {
     override suspend fun getCharities(): List<Charity> {
@@ -13,7 +14,7 @@ class TamboonApi : com.omise.tamboon.network.TamboonApi {
     }
 
     override suspend fun donate(donationRequest: DonationRequest): DonationResponse {
-        return DonationResponse(false, "", "")
+        return JsonParser.getUrl<DonationResponse>(URL_DONATION) ?: DonationResponse(false, "", "")
     }
 
 }

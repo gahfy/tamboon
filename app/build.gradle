@@ -72,7 +72,9 @@ project.afterEvaluate {
                 classDirectories =
                         fileTree(
                                 dir: "$project.buildDir/tmp/kotlin-classes/debug",
-                                excludes: ['**/R.class',
+                                excludes: ['**/di/module/*.*',
+                                           '**/extensions/*View*.*',
+                                           '**/R.class',
                                            '**/R$*.class',
                                            '**/*$ViewBinder*.*',
                                            '**/*$InjectAdapter*.*',
@@ -81,6 +83,7 @@ project.afterEvaluate {
                                            '**/Manifest*.*',
                                            '**/*Test*.*',
                                            '**/*Activity*.*',
+                                           '**/*Adapter*.*',
                                            '**/CiMattersApplication*.*',
                                            'android/**/*.*']
                         )
