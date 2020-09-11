@@ -1,3 +1,5 @@
+Gaëtan était ici
+
 [![Build Status](https://travis-ci.org/gahfy/tamboon.svg?branch=master)](https://travis-ci.org/gahfy/tamboon)  [![Codecov](https://codecov.io/github/gahfy/tamboon/coverage.svg?branch=master)](https://codecov.io/gh/gahfy/tamboon)
 
 # Configuration
